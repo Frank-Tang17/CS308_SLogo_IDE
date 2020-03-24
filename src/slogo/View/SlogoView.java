@@ -79,7 +79,6 @@ public class SlogoView {
 
     private void bindProperties() {
         createBindableBackground();
-        createBindablePen();
         createBindableFile();
         createBindableLanguage();
         createBindableInfoPanel();
@@ -93,13 +92,6 @@ public class SlogoView {
             return new Background(fill);
         }, myInputView.getBackgroundPropertyColor()));
         myCommandDatabase.bindBackgroundColor(myInputView.getBackgroundPropertyColor());
-        myCommandDatabase.bindPenColor(myInputView.getPenPropertyColor());
-    }
-
-
-    private void createBindablePen() {
-        myTurtleView.getPenColorProperty().bind(myInputView.getPenPropertyColor());
-        myTurtleView.getPenColorProperty().getValue();
     }
 
     private void createBindableFile() {

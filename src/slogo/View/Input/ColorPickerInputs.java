@@ -14,6 +14,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * ColorPickerInputs holds the ColorPicker used in the UI to take input from the user, including setting the background color.
+ * The code does support functionality to bind the pen color but was commented out since that functionality was switched to TurtleView.
+ * The class extends Inputs, but the inheritance hierarchy is limited since the author ran out of time implementing it.
+ * The Background ColorPicker is held in an HBox that is added to InputView.
+ */
 public class ColorPickerInputs extends Inputs {
 
     private HBox myColorPickers;
@@ -26,9 +32,14 @@ public class ColorPickerInputs extends Inputs {
     private static final List<String> ALL_COLOR_PICKERS = new ArrayList<>(Arrays.asList(BACKGROUND_KEY));
 
     private ColorPicker myBackGroundPicker;
-    private ColorPicker myPenPicker;
+    // private ColorPicker myPenPicker;
 
-    public ColorPickerInputs(ObjectProperty<Color> background, ObjectProperty<Color> pen) {
+    /**
+     * Constructor that creates Color Pickers based off of information from the color picker resource bundle.
+     * Background Color Picker is bound to the background color and wrapped in an HBox with its corresponding label.
+     * @param background is the background property in SlogoView to bind the ColorPicker's value to.
+     */
+    public ColorPickerInputs(ObjectProperty<Color> background) {
         myColorPickers = new HBox();
         for (String pickerType : ALL_COLOR_PICKERS) makeColorVBox(pickerType);
 
@@ -37,11 +48,11 @@ public class ColorPickerInputs extends Inputs {
         myColorPickers = formatButtons(myColorPickers);
     }
 
+    /**
+     * Basic getter method to obtain all ColorPickers, which is currently just the Background Picker, that are wrapped in an HBox.
+     * @return myColorPickers HBox to display in InptView.
+     */
     public HBox getColorPickersHBox() {return myColorPickers;}
-
-    public Property<Color> getBackgroundProperty() {return myBackGroundPicker.valueProperty();}
-
-    public Property<Color> getPenProperty() {return myPenPicker.valueProperty();}
 
     private void makeColorVBox(String pickerType) {
         VBox addedVBox = new VBox();
@@ -58,6 +69,4 @@ public class ColorPickerInputs extends Inputs {
         addedVBox.getChildren().addAll(addedLabel, addedColorPicker);
         myColorPickers.getChildren().add(addedVBox);
     }
-
-    // TODO: delete
 }

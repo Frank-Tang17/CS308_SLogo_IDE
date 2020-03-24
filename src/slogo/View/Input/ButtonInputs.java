@@ -22,6 +22,12 @@ import slogo.Model.FileManager.FileReader;
 import slogo.Model.FileManager.FileWriter;
 import slogo.View.SlogoView;
 
+/**
+ * ButtonInputs holds the Buttons used in the UI to take input from the user, including setting a turtle image, setting preferences, saving preferences, and creating a new workspace.
+ * The class extends Inputs, but the inheritance hierarchy is limited since the author ran out of time implementing it.
+ * The class interacts with XML Reading and Writing via FileReaders and FileWriters to save and load preferences.
+ * All buttons are held in an HBox which is added to InputView.
+ */
 public class ButtonInputs extends Inputs {
 
     private HBox myButtons;
@@ -59,7 +65,13 @@ public class ButtonInputs extends Inputs {
     ObjectProperty backgroundProperty;
     ObjectProperty languageProperty;
 
-    public ButtonInputs(ObjectProperty background, ObjectProperty pen, ObjectProperty language, ObjectProperty<File> turtle) {
+    /**
+     * Constructor that initializes the HBox holding all buttons, the Properties that relate to each button, and the FileReader and FileWriter to save/load preferences.
+     * @param background is the background color property that is bound to the background of the program in SlogoView. This automatically updates when loading preferences.
+     * @param language is the string property representing the language of the program. This is bound to the information displayed in InfoView and the language in which commands are parsed. It is updated on loading preferences.
+     * @param turtle is the file property representing the turtle image. It is bound to the image displayed in TurtleView which is updated when loading preferences or a new turtle image.
+     */
+    public ButtonInputs(ObjectProperty background,ObjectProperty language, ObjectProperty<File> turtle) {
         turtleProperty = new SimpleObjectProperty<File>();
         turtleProperty.bindBidirectional(turtle);
         turtleProperty.setValue(new File(DEFAULT_TURTLE_FILE));
@@ -80,6 +92,10 @@ public class ButtonInputs extends Inputs {
         myWriter = new FileWriter();
     }
 
+    /**
+     * Basic getter method that returns an HBox holding all buttons and their labels corresponding to their functionality.
+     * @return myButtons HBox to be displayed in InputView.
+     */
     public HBox getButtonsHBox() {return myButtons;}
 
     private void makeButtonVBox(String buttonType) {
@@ -130,7 +146,7 @@ public class ButtonInputs extends Inputs {
         turtleProperty.setValue(new File(newProperties.get("turtle")));
     }
 
-     void saveProperties() {
+     private void saveProperties() {
         Map<String, String> savedPreferences = new HashMap<String, String>();
         System.out.println("URL: " + turtleProperty.getValue().toString());
 

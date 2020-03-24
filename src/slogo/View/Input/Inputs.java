@@ -9,6 +9,11 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+/**
+ * Basic shell to support an inheritance model across the Input classes. Common methods and instance variables are held here.
+ * Future extensions could build upon this, moving duplicated code into this class.
+ * Subclasses are ButtonInputs, ColorPickerInputs, and ComboBoxInputs.
+ */
 public class Inputs {
 
     protected static final String PROPERTIES_REGEX_SPLITTER = ", ";
