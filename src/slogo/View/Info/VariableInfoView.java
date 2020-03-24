@@ -11,6 +11,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * Class representing the information displayed regarding the variables held in the backend.
+ * Information is encoded into a VBox that is displayed in the toggle button in InfoViews.
+ * The variable info is bound via a Map to the backend so it automatically updates.
+ * @author Eric Doppelt
+ */
 public class VariableInfoView  {
 
     private static final String COMMAND_TEXT_DEFAULT = "Enter Value";
@@ -25,6 +31,12 @@ public class VariableInfoView  {
     private Consumer<List<String>> myParserCommand;
     private VBox displayedInfo;
 
+    /**
+     * Constructor initialize displayed VBox, command parser, and map of variables that is binded to the backend.
+     * Change listener is added to variables to automatically display new information as it is entered into the system.
+     * Labels representing variables are made such that clicking them allows the user to update their value.
+     * @param parser is a consumer that accepts String commands and executes them.
+     */
     public VariableInfoView(Consumer<List<String>> parser) {
         displayedInfo = new VBox();
         myParserCommand = parser;
@@ -41,10 +53,18 @@ public class VariableInfoView  {
         }));
     }
 
+    /**
+     * Basic getter method that returns the VBox to display in InfoViews
+     * @return VBox of labels representing each variable.
+     */
     public VBox getInfoVBox() {
         return displayedInfo;
     }
 
+    /**
+     * Basic getter for the varaible map; this is used to bind the information to the backend.
+     * @return Property holding the variable information specifically in a MapProperty.
+     */
     public Property getBindableInfo() {
         return myVariables;
     }

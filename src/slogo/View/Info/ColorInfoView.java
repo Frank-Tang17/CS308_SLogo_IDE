@@ -12,6 +12,13 @@ import javafx.scene.paint.Color;
 
 import java.util.List;
 
+/**
+ * Class representing the information displayed regarding the palettes available to be picked.
+ * Information is encoded into a VBox that is displayed in the toggle button in InfoViews.
+ * The color info is bound via a Map to the backend so it automatically updates.
+ * @author Eric Doppelt
+ */
+
 public class ColorInfoView  {
 
     private MapProperty<Integer, List> myInfo;
@@ -24,6 +31,10 @@ public class ColorInfoView  {
     private static final int G_INDEX = 1;
     private static final int B_INDEX = 2;
 
+    /**
+     * Constructor initializes the displayed VBox and map of colors that is binded to the backend.
+     * A change listener is added to automatically update the frontend to display a new color when it is stored in the backend.
+     */
     public ColorInfoView() {
         displayedInfo = new VBox();
 
@@ -40,10 +51,18 @@ public class ColorInfoView  {
         });
     }
 
+    /**
+     * Basic getter method that retrns the VBox to display in InfoViews
+     * @return VBox of labels representing each color
+     */
     public VBox getInfoVBox() {
         return displayedInfo;
     }
 
+    /**
+     * Basic getter for the color map; this is used to bind the information to the backend.
+     * @return MapProperty holding the name of each color and its RGB values
+     */
     public MapProperty getInfoProperty() {
         return myInfo;
     }

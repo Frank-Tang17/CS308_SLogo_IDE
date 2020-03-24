@@ -20,6 +20,12 @@ import java.util.*;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * Class that wraps a toggle button and help button within a VBox, displayed in SlogoViews BorderPane.
+ * Toggle Button holds data regarding colors, variables, commands, and history.
+ * Help Button links to a directory of commands.
+ * @author Eric Doppelt
+ */
 public class InfoViews {
 
     private HistoryInfoView myHistoryView;
@@ -66,6 +72,11 @@ public class InfoViews {
     private static final String TRANSLATION_SPLITTER = "\\|";
     private static final int DISPLAYED_TRANSLATION_INDEX = 0;
 
+    /**
+     * Constructor that initializes the Toggle Group and Help Button. Displayed info is stored in user data of Toggle Button.
+     * @param parserCommand is a consumer that accepts strings to execute via the backend. This is passed to myHistoryView, myVariableView, and myCommandView.
+     * @param language is a String Property bound to the language held in Input. On a change, updateLanguage() is called.
+     */
     public InfoViews(Consumer<List<String>> parserCommand, Property<String> language) {
         myParserCommand = parserCommand;
         myLanguage = new SimpleObjectProperty<String>();
@@ -83,18 +94,42 @@ public class InfoViews {
         setButtonActions();
     }
 
+    /**
+     * Getter method that returns variable info via a Property. Called in Slogoview to bind to the backend.
+     * @return Property myVariables held in myVariablesView that is specifically a Map Property of all variables.
+     */
     public Property getVariableProperty() {
         return myVariableView.getBindableInfo();
     }
 
+    /**
+     * Getter method that returns history info via a Property. Called in Slogoview to bind to the backend.
+     * @return Property myHistory held in myHistoryView that is specifically a List Property of all variables.
+     */
     public Property getHistoryProperty() {return myHistoryView.getHistoryProperty();}
 
+    /**
+     * Getter method that returns command info via a Property. Called in Slogoview to bind to the backend.
+     * @return Property myInfo held in myCommandView that is specifically a Map Property of all commands.
+     */
     public Property getCommandProperty() {
         return myCommandView.getInfoProperty();
     }
 
+    /**
+     * Getter method that returns color info via a MapProperty. Called in Slogoview to bind to the backend.
+     * @return Property myInfo held in myColorView that is specifically a Map Property of all colors.
+     */
     public MapProperty getColorsProperty() {
         return myColorView.getInfoProperty();
+    }
+
+    /**
+     * Getter method that returns the VBox wrapping the Toggle Button, its User Data, and the Help Button. This is displayed in SlogoView's BorderPane.
+     * @return VBox to display info in SlogoView.
+     */
+    public VBox getCompletePanel() {
+        return myInfoPanel;
     }
 
     private void initInfoPanel() {
@@ -167,10 +202,6 @@ public class InfoViews {
                 System.out.println("Bad Help Button URL!");
             }
         });
-    }
-
-    public VBox getCompletePanel() {
-        return myInfoPanel;
     }
 
     private void updateLanguage() {

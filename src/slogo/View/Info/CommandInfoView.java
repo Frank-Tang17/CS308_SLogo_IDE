@@ -14,6 +14,14 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
+/**
+ * Class representing the information displayed regarding the commands available to be run. This class is a shell with very limited functionality, as author ran out of time.
+ * Commands would be displayed via the displayedInfo VBox that is shown when clicked in InfoViews's toggle button. Code for the changeListener is commented out below.
+ * The command info is bound via a Map to the backend so it automatically updates.
+ * The displayed information does not have functionality to change on language updates or run on a click, since a last minute bug prevented this.
+ * Steps to implement total functionality are detailed in design review document.
+ */
+
 public class CommandInfoView {
 
     private Property myInfo;
@@ -29,6 +37,12 @@ public class CommandInfoView {
 
     private VBox displayedInfo;
 
+    /**
+     * Constructor initializes the VBox, language, parser, and Map Property
+     * Language is set to a change listener that calls updateLangauge
+     * @param parser should be used in future implementations to accept commands via the passCommand method. A last-minute bug prevented this implementation.
+     * @param currentLanguage is the initial language used in the program.
+     */
     public CommandInfoView(Consumer<List<String>> parser, Property<String> currentLanguage) {
         displayedInfo = new VBox();
         myInfo = new SimpleMapProperty();
@@ -41,9 +55,18 @@ public class CommandInfoView {
         myLanguage.addListener((observable, oldValue, newValue) -> updateLanguage(newValue));
     }
 
+    /**
+     * Basic getter method to return the Map Property representing the commands that have been defined
+     * @return myInfo instance variable representing commands in a map
+     */
     public Property getInfoProperty() {
         return myInfo;
     }
+
+    /**
+     * Basic getter method for a VBox that is displayed in InfoView holding the commands.
+     * @return
+     */
     public VBox getInfoVBox() {
         return displayedInfo;
     }
@@ -66,10 +89,8 @@ public class CommandInfoView {
     private void passCommand(String command) {
         myParserCommand.accept(Arrays.asList(command.split(WHITESPACE)));
     }
-
 }
-
-//myCommands.addListener((observable, oldValue, newValue) -> {
+//        myCommands.addListener((observable, oldValue, newValue) -> {
 //        ((VBox) myCommandToggle.getUserData()).getChildren().clear();
 //        for (String commandName : newValue.keySet()) {
 //        String translatedCommand = changeCommandLanguage(commandName);
