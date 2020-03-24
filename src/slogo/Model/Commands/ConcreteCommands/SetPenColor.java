@@ -25,7 +25,7 @@ public class SetPenColor extends Command {
     public Number executeAndReturnValue() {
         index = database.getParameterStack().pop().intValue();
         ArrayList<Integer> color = (ArrayList<Integer>) database.getColorMap().get(index);
-        database.setPenColor(color);
+        database.getTurtle().setPenColor(color);
         return index;
     }
 

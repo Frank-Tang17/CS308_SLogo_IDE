@@ -3,6 +3,7 @@ package slogo.Model.CommandInfrastructure;
 import java.util.Stack;
 import javafx.beans.property.ListProperty;
 import slogo.Model.Commands.Command;
+import slogo.Model.TurtleData;
 
 public class CommandProducer {
 
@@ -47,8 +48,17 @@ public class CommandProducer {
       }
       newCommandEntry = newCommandEntry + argumentEntries;
       HISTORY_LIST.getValue().add(newCommandEntry);
-      makeCommand(commStack.pop());
+//      for(TurtleData turtle: commandDatabase.getTurtleList()){
+//        if(turtle.getTurtleActive() == true) {
+//          commandDatabase.setActiveTurtle(turtle);
+//          newCommand = makeCommand(commStack.peek());
+//          currentCommandReturnValue = newCommand.executeAndReturnValue();
+//        }
+//      }
+      commandDatabase.setActiveTurtle(commandDatabase.getTurtle());
+      newCommand = makeCommand(commStack.peek());
       currentCommandReturnValue = newCommand.executeAndReturnValue();
+      commStack.pop();
       argumentRunningTotal--;
       if(commStack.size() == 0){
         break;

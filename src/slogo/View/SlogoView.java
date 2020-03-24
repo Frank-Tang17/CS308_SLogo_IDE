@@ -43,14 +43,14 @@ public class SlogoView {
 
     private void initModel() {
         myModelDatabase = new ModelDatabase();
-        myCommandDatabase = new CommandDatabase(myModelDatabase.getMyTurtle());
+        myCommandDatabase = new CommandDatabase(myModelDatabase.getMyTurtles());
         myCommandProducer = new CommandProducer(myCommandDatabase, myModelDatabase.getHISTORY_LIST());
         myModelParser = new ModelParser(MODELPARSER_LANGUAGE, myCommandDatabase, myCommandProducer);
     }
 
     private void initView() {
-        myBackgroundPane = new Pane();
-        myTurtleView = new TurtleView(myModelDatabase.getMyTurtle(), myBackgroundPane,c -> myModelParser.parseText(c));
+        myBackgroundPane = new Pane();myTurtleView = new TurtleView(myModelDatabase.getMyTurtles().get(0), myBackgroundPane,c -> myModelParser.parseText(c));
+
         CommandBox myCommandLine = new CommandBox(myModelParser, myTurtleView);
         myInputView = new InputView();
         myInfoView = new InfoView(c -> myModelParser.parseText(c), myInputView.getLanguage());
@@ -90,13 +90,12 @@ public class SlogoView {
             return new Background(fill);
         }, myInputView.getBackgroundPropertyColor()));
         myCommandDatabase.bindBackgroundColor(myInputView.getBackgroundPropertyColor());
-        myCommandDatabase.bindPenColor(myInputView.getPenPropertyColor());
     }
 
 
     private void createBindablePen() {
-        myTurtleView.getPenColorProperty().bind(myInputView.getPenPropertyColor());
-        myTurtleView.getPenColorProperty().getValue();
+        //myTurtleView.getPenColorProperty().bind(myInputView.getPenPropertyColor());
+        //myTurtleView.getPenColorProperty().getValue();
     }
 
     private void createBindableFile() {

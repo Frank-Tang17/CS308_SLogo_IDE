@@ -22,7 +22,7 @@ public class ModelDatabase {
   private ListProperty<String> HISTORY_LIST = new SimpleListProperty(FXCollections.observableList(new ArrayList<>()));
 
 
-  private TurtleData turtle = new TurtleData("Happy", 0, 0, 0);
+  private List<TurtleData> turtles = new ArrayList<>();
 
   private CommandDatabase originCommandDatabase;
   private ModelParser originParser;
@@ -36,18 +36,18 @@ public class ModelDatabase {
    */
 
   public ModelDatabase() {
-    TurtleData originTurtle = new TurtleData("1", 0, 0, 0);
-    turtleListProperty.getValue().add(originTurtle);
-
+    TurtleData happyTurtle = new TurtleData("happy", 0, 0, 0);
+    happyTurtle.setTurtleActive(true);
+    turtles.add(happyTurtle);
     language = "English";
 
-    originCommandDatabase = new CommandDatabase(turtle);
+    originCommandDatabase = new CommandDatabase(turtles);
     originProducer = new CommandProducer(originCommandDatabase, HISTORY_LIST);
     originParser = new ModelParser(language, originCommandDatabase, originProducer);
   }
 
-  public TurtleData getMyTurtle() {
-    return turtle;
+  public List<TurtleData> getMyTurtles() {
+    return turtles;
   }
 
   public ListProperty<String> getHISTORY_LIST(){

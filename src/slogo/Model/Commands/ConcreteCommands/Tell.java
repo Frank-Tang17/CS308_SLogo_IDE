@@ -1,5 +1,6 @@
 package slogo.Model.Commands.ConcreteCommands;
 
+import jdk.swing.interop.SwingInterOpUtils;
 import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 import slogo.Model.TurtleData;
@@ -46,6 +47,7 @@ public class Tell extends Command {
                 turtleList.get(index).setTurtleActive(true);
             } else {
                 TurtleData turtle = new TurtleData(id, 0, 0, 0);
+                turtle.setTurtleActive(true);
                 turtleList.add(turtle);
             }
         }
@@ -55,18 +57,20 @@ public class Tell extends Command {
         setTurtleIds();
         for(TurtleData turtle: turtleList){
             System.out.println(turtle.getTurtleID());
+            System.out.println(turtle.getTurtleActive());
+
         }
+        System.out.println(returnArgValue);
 
         return returnArgValue;
     }
 
-    public void setTurtleIds(){
+    private void setTurtleIds(){
         turtleList = database.getTurtleList();
-        for(TurtleData turtle :turtleList){
+        for(TurtleData turtle : turtleList){
             turtleIdList.add(turtle.getTurtleID());
         }
     }
-
 
     @Override
     public int getArgumentsNeeded() {

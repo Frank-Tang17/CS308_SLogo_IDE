@@ -46,6 +46,7 @@ public class SetPosition extends Command {
     System.out.println("turtleY before " + turtleObject.getTurtleY());
     turtleObject.setXCoord(newX.doubleValue());
     turtleObject.setYCoord(newY.doubleValue());
+    turtleObject.addCoord(turtleObject.getTurtleX(), turtleObject.getTurtleY());
     System.out.println("turtleX after " + turtleObject.getTurtleX());
     System.out.println("turtleY after " + turtleObject.getTurtleY());
     System.out.println("return " + returnArgValue);

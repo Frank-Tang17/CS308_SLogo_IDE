@@ -43,6 +43,7 @@ public class Forward extends Command {
 
     // TODO THIS IS TESTER CODE
     turtleObject.addCoord(turtleObject.getTurtleX(), turtleObject.getTurtleY());
+    System.out.println("turtle ID "+ turtleObject.getTurtleID());
     System.out.println("turtle X " + turtleObject.getTurtleX());
     System.out.println("turtle Y " + turtleObject.getTurtleY());
     returnArgValue = distanceToTravel.doubleValue();

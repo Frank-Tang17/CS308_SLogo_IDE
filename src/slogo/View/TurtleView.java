@@ -163,6 +163,7 @@ public class TurtleView {
         bindPositions(turtle.getCoordHistory());
         bindPen(turtle.getPenDownProperty());
         bindAngle(turtle.directionProperty());
+        penColor.bind(turtle.bindPenColor());
         Bindings.bindBidirectional(turtleIsActive,turtle.getActiveProperty());
         Bindings.bindBidirectional(xCoor, turtle.getTurtleXProperty());
         Bindings.bindBidirectional(yCoor, turtle.getTurtleYProperty());
