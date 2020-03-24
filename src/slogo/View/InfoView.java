@@ -130,7 +130,7 @@ public class InfoView {
         myCommands.addListener((observable, oldValue, newValue) -> {
             ((VBox) myCommandToggle.getUserData()).getChildren().clear();
             for (String s : newValue.keySet())
-                ((VBox) myCommandToggle.getUserData()).getChildren().add(new Label(s.substring(1) + newValue.get(s)));
+                ((VBox) myCommandToggle.getUserData()).getChildren().add(new Label(s + COLON_REGEX + SPACE + newValue.get(s)));
         });
 
         myHistory = new SimpleListProperty<>();
