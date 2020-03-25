@@ -18,7 +18,6 @@ Specifically, the following methods have been affected by this change:
 	public void updateTurtleImage();
     public void updateTurtle();
 ```
-test
 
 None of these methods are still public, since the updates are used via binding. As such, there is no need to tell the View to update this information; instead, the Bindings updates automatically. These changes are major, but they are beneficial and purposeful.
 
