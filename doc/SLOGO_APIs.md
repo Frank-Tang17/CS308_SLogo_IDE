@@ -15,8 +15,6 @@ The View needs to know a new point to move the turtle to, and it needs to knowth
 
 Errors can be thrown for bad input: such as a location off the screen, or a command that is not known.
 
-
-
 ## Internal:
 ### How you plan to provide paths for extension through interfaces, inheritance, and design patterns for new features you might reasonably expect to be added to the program?
 

@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 import java.util.*;
 
 /**
- * Internal UI Class that handles Visualization of the SLogo class
+ * Internal UI Class that handles Visualization of the SLogo class. Note that these were our ORIGINAL APIs, and changes can be found in the API_CHANGES doc.
  * Specifically deals with updates to the Turtle and Grid views with respect to changes in Colors and Turtle Locations
  * Also handles the initial visualization of Buttons, Info, Grid, and Turtle
  * Handles the display of an error that is called after External is given an error to be handled by Contoller

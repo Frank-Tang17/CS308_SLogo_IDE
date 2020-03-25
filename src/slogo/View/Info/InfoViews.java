@@ -178,12 +178,6 @@ public class InfoViews {
 
     private Button createHelpButton() {
         Button tempButton = new Button();
-        try {
-            Image helpImage = new Image(this.getClass().getClassLoader().getResourceAsStream(HELP_IMAGE_PATH), 0, 25, true, false);
-            tempButton.setGraphic(new ImageView(helpImage));
-            //TODO: fill this in
-        } catch (Exception e) {
-        }
         tempButton.setPadding(new Insets(0));
         myButtonPanel.getChildren().add(tempButton);
         return tempButton;

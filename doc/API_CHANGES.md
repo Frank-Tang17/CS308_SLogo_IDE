@@ -4,8 +4,13 @@
 ### Changes that have been made to the APIs
 
 #### Overview:
-As an overview of the API changes that we made, there were several changes pertaining to the External API of the Backend of our project, mainly to the Controller class. This is because in the end, we decided to use bindings to update the information in the view so that any change in the Model's data will reflect in a change in the view's appearance. Everything else, however, has stayed relatively the same, as we are communicating via a CommandBox to send information to the ModelParser (FrontEnd External), communicating in the Model between the CommandDatabase, Commands, and the ModelParser (Backend Internal), and communicating in the FrontEnd Internal between the TurtleView and TurtlePopup classes to show the turtle and its popup menu. Overall though, we have a lot of changes we need to add to the APIs because we were not aware what should be added to the APIs. As a result, we need to have to add all the public methods we have developed in the time of making this project.
+As an overview of the API changes that we made, there were several changes pertaining to the External API of the Backend of our project, mainly to the Controller class. This is because in the end, we decided to use bindings to update the information in the view so that any change in the Model's data will reflect in a change in the view's appearance. Everything else, however, has stayed relatively the same, as we are communicating via a CommandBox to send information to the ModelParser (FrontEnd External), communicating in the Model between the CommandDatabase, Commands, and the ModelParser (Backend Internal), and communicating in the FrontEnd Internal between the TurtleView and TurtlePopup classes to show the turtle and its popup menu. Overall though, we have a lot of changes we need to add to the APIs because we were not aware what should be added to the APIs. As a result, we have needed to add all the public methods we have developed in the time of making this project.
 
+Further, note that my work really hinged around the Frontend Internal section of our project. I document the API changes below. Before doing so,
+I want to note that at first, I was hesitant to add binding to our project, since I did not want to change our APIs so drastically. However, after thinking through it more, I believed
+that change itself was not inherently bad—so long as it was beneficial to our project. 
+
+The backend *did* ask to use binding, and at first I was hesitant. But now I agree with them that these were positive changes, and I support them.
 #### Frontend Internal
 
 The Frontend Internal changed mostly due to the implementation of binding. This was not in our original plan; however, once we learned more about the concept, we realized that it would simplify our project significantly.
@@ -13,25 +18,25 @@ The Frontend Internal changed mostly due to the implementation of binding. This 
 Specifically, the following methods have been affected by this change:
 
 ``` java
-    public void updateBackgroundColor(Color color);
-	public void updatePenColor();
-	public void updateTurtleImage();
-    public void updateTurtle();
+public void updateBackgroundColor(Color color);
+public void updatePenColor();
+public void updateTurtleImage();
+public void updateTurtle();
 ```
 
 None of these methods are still public, since the updates are used via binding. As such, there is no need to tell the View to update this information; instead, the Bindings updates automatically. These changes are major, but they are beneficial and purposeful.
 
 Additionally, we are no longer calling the following methods:
 ``` java
-    public void displayTurtle();
-    public void displayGrid();
-	public void displayInfo();
+public void displayTurtle();
+public void displayGrid();
+public void displayInfo();
 ```
 
 Instead, we use a variety of getter methods that return a Node to be added to a scene. displayInfo() for example, is now replaced by adding the node of an InfoView class to the display. This allows us to to create the visualization by adding various components to the scene in SlogoView, centralizing the display in one class (while also using composition). This change is also better, since the app is centralized well in one location now.
 
 #### Frontend External
-CommandBox lost a most of its public methods. As the team moved towards binding as our form of communication, the CommandBox became much more active. Instead of having other sources request commands from CommandBox via:
+CommandBox lost most of its public methods. As the team moved towards binding as our form of communication, the CommandBox became much more active. Instead of having other sources request commands from CommandBox via:
 ``` java
     public void getCommand();
 ```

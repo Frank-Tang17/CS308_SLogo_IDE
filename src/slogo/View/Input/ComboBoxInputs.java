@@ -23,8 +23,6 @@ import java.util.ResourceBundle;
  */
 public class ComboBoxInputs extends Inputs {
 
-    private static final List<String> ALL_COMBO_BOXES = new ArrayList<>(Arrays.asList("language"));
-
     private static final String COMBOBOXES = "comboBoxes";
     private ResourceBundle myComboBoxesBundle  = ResourceBundle.getBundle(COMBOBOXES);
 
@@ -32,9 +30,6 @@ public class ComboBoxInputs extends Inputs {
     private static final String PATH_TO_RESOURCE_LANGUAGES = "././././resources/languages";
     private static final int LENGTH_OF_FILE_ENDING = 11;
     private static final String LANGUAGE_KEY = "language";
-
-    private static final String PROPERTIES_REGEX_SPLITTER = ", ";
-    private static final int VBOX_LABEL_INDEX = 0;
 
     private ComboBox myLanguageBox;
 
@@ -78,7 +73,6 @@ public class ComboBoxInputs extends Inputs {
     }
 
     private ObservableList initLanguageOptions() {
-        //TODO: exception here
         File languageDirectory = new File(PATH_TO_RESOURCE_LANGUAGES);
         List languageNames = new ArrayList<String>();
         for (File tempFile : languageDirectory.listFiles()) {
