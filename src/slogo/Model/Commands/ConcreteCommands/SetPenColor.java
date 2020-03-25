@@ -44,7 +44,9 @@ public class SetPenColor extends Command {
         dummyColor1.add(255);
         database.addToColorMap(0,dummyColor1);
     }
-
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
     @Override
     public int getArgumentsNeeded() {
         return this.argumentsNeeded;

@@ -5,7 +5,7 @@ import slogo.Model.Commands.Command;
 import slogo.Model.TurtleData;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a SetHeading Command
  *
  * @author Frank Tang
  */
@@ -24,12 +24,10 @@ public class SetHeading extends Command {
     super(data);
     database = data;
 
-    //returnArgValue = min(abs(newTurtleDirection - originalTurtleDirection), fullRevolution - abs(newTurtleDirection - originalTurtleDirection));
-
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Sets the turtle heading to the parameter given and returns the amount of degrees in angle change
    */
   @Override
   public Double executeAndReturnValue() {
@@ -41,6 +39,9 @@ public class SetHeading extends Command {
     return this.returnArgValue;
 
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

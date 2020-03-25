@@ -16,154 +16,225 @@ import slogo.Model.TurtleData;
 
 public class CommandDatabase {
 
-    private String targetVariable;
-    private Stack<Number> parameterStack = new Stack<>();
-    private MapProperty<String, Number> VARIABLE_MAP = new SimpleMapProperty(
-            FXCollections.observableMap(new LinkedHashMap<String, Number>()));
+  /**
+   * CommmandDatabase class whose role is to act as a database of information for making commands
+   *
+   * @author Frank Tang
+   */
 
-    private MapProperty<String, String> COMMAND_MAP = new SimpleMapProperty(
-            FXCollections.observableMap(new LinkedHashMap<String, String>()));
+  private String targetVariable;
+  private Stack<Number> parameterStack = new Stack<>();
+  private MapProperty<String, Number> VARIABLE_MAP = new SimpleMapProperty(
+      FXCollections.observableMap(new LinkedHashMap<String, Number>()));
 
-    private Function<List<String>, Number> parseFunction;
-    private Function<List<String>, Number> listFunction;
-    private TurtleData targetTurtle;
-    private List<TurtleData> turtleList;
+  private MapProperty<String, String> COMMAND_MAP = new SimpleMapProperty(
+      FXCollections.observableMap(new LinkedHashMap<String, String>()));
 
-    private MapProperty<Integer, List<Integer>> COLOR_MAP = new SimpleMapProperty(
-            FXCollections.observableMap(new LinkedHashMap<Integer, List<Integer>>()));
-    private ObjectProperty<Color> backgroundColorProperty;
-    private ObjectProperty<Color> penColorProperty;
+  private Function<List<String>, Number> parseFunction;
+  private Function<List<String>, Number> listFunction;
+  private TurtleData targetTurtle;
+  private List<TurtleData> turtleList;
 
-
-    private ModelParser originParser;
-    private List<String> currentLineArray;
-
-    public CommandDatabase(List<TurtleData> turtles) {
-        turtleList = turtles;
-        targetTurtle = turtleList.get(0);
-        backgroundColorProperty = new SimpleObjectProperty<Color>();
-        penColorProperty = new SimpleObjectProperty<Color>();
-    }
-
-    public void setPenColor(List<Integer> rgbList) {
-        Color color = Color.rgb(rgbList.get(0), rgbList.get(1), rgbList.get(2));
-        penColorProperty.setValue(color);
-    }
-
-    public void bindPenColor(Property viewBackground) {
-        viewBackground.bindBidirectional(penColorProperty);
-    }
-
-    public List<TurtleData> getTurtleList() {
-        return turtleList;
-    }
-
-    public void setTurtleList(List<TurtleData> newTurtleList) {
-        turtleList = newTurtleList;
-    }
-
-    public void setActiveTurtle(TurtleData activeTurtle) {
-        targetTurtle = activeTurtle;
-    }
-
-    public TurtleData getTurtle() {
-        return targetTurtle;
-    }
-
-    public void setBackgroundColor(List<Integer> rgbList) {
-        Color color = Color.rgb(rgbList.get(0), rgbList.get(1), rgbList.get(2));
-        backgroundColorProperty.setValue(color);
-    }
-
-    public void bindBackgroundColor(Property viewBackground) {
-        viewBackground.bindBidirectional(backgroundColorProperty);
-    }
-
-    public Stack<Number> getParameterStack() {
-        return parameterStack;
-    }
+  private MapProperty<Integer, List<Integer>> COLOR_MAP = new SimpleMapProperty(
+      FXCollections.observableMap(new LinkedHashMap<Integer, List<Integer>>()));
+  private ObjectProperty<Color> backgroundColorProperty;
+  private ObjectProperty<Color> penColorProperty;
 
 
-    public void setListArray(List<String> array) {
-        currentLineArray = array;
-    }
+  private ModelParser originParser;
+  private List<String> currentLineArray;
 
-    public Function<List<String>, Number> getParseFunction() {
-        return parseFunction;
-    }
+  public CommandDatabase(List<TurtleData> turtles) {
+    turtleList = turtles;
+    targetTurtle = turtleList.get(0);
+    backgroundColorProperty = new SimpleObjectProperty<>();
+    penColorProperty = new SimpleObjectProperty<>();
+  }
 
-    public Function<List<String>, Number> getListFunction() {
-        return listFunction;
-    }
+  /**
+   * Sets the pen color based on an RGB value
+   */
+  public void setPenColor(List<Integer> rgbList) {
+    Color color = Color.rgb(rgbList.get(0), rgbList.get(1), rgbList.get(2));
+    penColorProperty.setValue(color);
+  }
 
-    public List<String> getCurrentLineArray() {
-        return currentLineArray;
-    }
+  /**
+   * Binds the pen color data to the front end
+   */
+  public void bindPenColor(Property viewBackground) {
+    viewBackground.bindBidirectional(penColorProperty);
+  }
 
-    /**
-     * Prompt the user to make a bet from a menu of choices.
-     */
-    public void addParser(ModelParser parser) {
-        originParser = parser;
-        parseFunction = d -> originParser.parseText(d);
-        listFunction = l -> originParser.findListEnd(l);
-//    updateCommandMap();
-    }
+  /**
+   * Gets the list of all turtles present in program
+   */
+  public List<TurtleData> getTurtleList() {
+    return turtleList;
+  }
+
+  /**
+   * Sets the list of all possible turtles
+   */
+  public void setTurtleList(List<TurtleData> newTurtleList) {
+    turtleList = newTurtleList;
+  }
+
+  /**
+   * Sets the active turtle for implementation of multiple turtles
+   */
+  public void setActiveTurtle(TurtleData activeTurtle) {
+    targetTurtle = activeTurtle;
+  }
+
+  /**
+   * Returns the TurtleData object of a turtle
+   */
+  public TurtleData getTurtle() {
+    return targetTurtle;
+  }
+
+  /**
+   * Sets the background color via an RGB value
+   */
+  public void setBackgroundColor(List<Integer> rgbList) {
+    Color color = Color.rgb(rgbList.get(0), rgbList.get(1), rgbList.get(2));
+    backgroundColorProperty.setValue(color);
+  }
+
+  /**
+   * Binds the background color data to the frontend
+   */
+  public void bindBackgroundColor(Property viewBackground) {
+    viewBackground.bindBidirectional(backgroundColorProperty);
+  }
+
+  /**
+   * Returns the current stack of parameters set by the CommandProducer
+   */
+  public Stack<Number> getParameterStack() {
+    return parameterStack;
+  }
+
+  /**
+   * Sets the current String array being parsed into the database
+   */
+  public void setListArray(List<String> array) {
+    currentLineArray = array;
+  }
+
+  /**
+   * Returns the Function for the parseText method
+   */
+  public Function<List<String>, Number> getParseFunction() {
+    return parseFunction;
+  }
+
+  /**
+   * Returns the Function for the findListEnd method
+   */
+  public Function<List<String>, Number> getListFunction() {
+    return listFunction;
+  }
+
+  /**
+   * Returns the current String array being parsed
+   */
+  public List<String> getCurrentLineArray() {
+    return currentLineArray;
+  }
+
+  /**
+   * Adds the two parser function of parsing text and finding the index of the end of a list to the
+   * database
+   */
+  public void addParser(ModelParser parser) {
+    originParser = parser;
+    parseFunction = d -> originParser.parseText(d);
+    listFunction = l -> originParser.findListEnd(l);
+  }
 
 
-    /**
-     * Prompt the user to make a bet from a menu of choices.
-     */
-    public void setVariableName(String targetCommand) {
-        targetVariable = targetCommand;
-    }
+  /**
+   * Sets the variable name in the database to the most recently called variable name
+   */
+  public void setVariableName(String targetCommand) {
+    targetVariable = targetCommand;
+  }
 
 
-    /**
-     * Prompt the user to make a bet from a menu of choices.
-     */
-    public MapProperty getVariableMap() {
-        return this.VARIABLE_MAP;
-    }
+  /**
+   * Returns the map of variables and their values
+   */
+  public MapProperty getVariableMap() {
+    return this.VARIABLE_MAP;
+  }
 
-    public void bindVariables(MapProperty displayedVariables) {
-        displayedVariables.bind(VARIABLE_MAP);
-    }
+  /**
+   * Binds the variable map to the MapProperty
+   */
+  public void bindVariables(MapProperty displayedVariables) {
+    displayedVariables.bind(VARIABLE_MAP);
+  }
 
-    public void addToVariableMap(String command, Number expression) {
-        this.VARIABLE_MAP.getValue().putIfAbsent(command, expression);
-        this.VARIABLE_MAP.getValue().put(command, expression);
-    }
+  /**
+   * Adds an entry into the variable map
+   */
+  public void addToVariableMap(String command, Number expression) {
+    this.VARIABLE_MAP.getValue().putIfAbsent(command, expression);
+    this.VARIABLE_MAP.getValue().put(command, expression);
+  }
 
-    public String getVariableName() {
-        return targetVariable;
-    }
+  /**
+   * Returns the last variable name input into the database
+   */
+  public String getVariableName() {
+    return targetVariable;
+  }
 
-    public void addToCommandMap(String command, String commandLine) {
-        this.COMMAND_MAP.getValue().putIfAbsent(command, commandLine);
-        this.COMMAND_MAP.getValue().put(command, commandLine);
-    }
+  /**
+   * Adds an entry into the command map
+   */
+  public void addToCommandMap(String command, String commandLine) {
+    this.COMMAND_MAP.getValue().putIfAbsent(command, commandLine);
+    this.COMMAND_MAP.getValue().put(command, commandLine);
+  }
 
-    public void bindCommands(MapProperty displayedCommands) {
-        displayedCommands.bind(COMMAND_MAP);
-    }
+  /**
+   * Binds the Command Map to the Map Property to be displayed in the front end
+   */
+  public void bindCommands(MapProperty displayedCommands) {
+    displayedCommands.bind(COMMAND_MAP);
+  }
 
-    public MapProperty<String, String> getCOMMAND_LIST() {
-        return this.COMMAND_MAP;
-    }
+  /**
+   * Returns the command map
+   */
+  public MapProperty<String, String> getCOMMAND_LIST() {
+    return this.COMMAND_MAP;
+  }
 
-    public void addToColorMap(int index, List<Integer> color) {
-        this.COLOR_MAP.putIfAbsent(index, color);
-        this.COLOR_MAP.put(index, color);
-    }
+  /**
+   * Adds to the color map
+   */
+  public void addToColorMap(int index, List<Integer> color) {
+    this.COLOR_MAP.putIfAbsent(index, color);
+    this.COLOR_MAP.put(index, color);
+  }
 
-    public void bindColors(MapProperty viewColors) {
-        viewColors.bind(COLOR_MAP);
-    }
+  /**
+   * Binds the Color Map to the MapProperty
+   */
+  public void bindColors(MapProperty viewColors) {
+    viewColors.bind(COLOR_MAP);
+  }
 
-    public MapProperty getColorMap() {
+  /**
+   * Returns the color map
+   */
+  public MapProperty getColorMap() {
 
-        return COLOR_MAP;
-    }
+    return COLOR_MAP;
+  }
 
 }

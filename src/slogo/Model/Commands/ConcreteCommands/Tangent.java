@@ -4,7 +4,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a Tangent Command
  *
  * @author Frank Tang
  */
@@ -24,18 +24,20 @@ public class Tangent extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Calculates the tangent value of the given parameter
    */
   @Override
   public Double executeAndReturnValue() {
     amountOfDegrees = database.getParameterStack().pop();
     returnArgValue = Math.tan(Math.toRadians(amountOfDegrees.doubleValue()));
-    System.out.println(returnArgValue);
     return this.returnArgValue;
   }
 
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
 

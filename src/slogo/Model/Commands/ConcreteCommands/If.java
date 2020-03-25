@@ -6,7 +6,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a BackCommand
+ * Subclass to create an If Command
  *
  * @author Frank Tang
  */
@@ -28,7 +28,7 @@ public class If extends Command {
   }
 
   /**
-   * Moves the turtle backwards by a pixel amount.
+   * Executes the commands in the list if the value of the parameter is greater than 0
    */
   @Override
   public Double executeAndReturnValue() {
@@ -48,6 +48,9 @@ public class If extends Command {
     return returnArgValue;
 
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

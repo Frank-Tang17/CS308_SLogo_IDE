@@ -4,7 +4,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a Not Command
  *
  * @author Frank Tang
  */
@@ -24,7 +24,7 @@ public class Not extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Returns a 1 if both parameters are 0; otherwise return a 0
    */
   @Override
   public Integer executeAndReturnValue() {
@@ -37,6 +37,9 @@ public class Not extends Command {
     }
     return (int) this.returnArgValue;
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

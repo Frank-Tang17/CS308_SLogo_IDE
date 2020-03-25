@@ -5,7 +5,7 @@ import slogo.Model.Commands.Command;
 import slogo.Model.TurtleData;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a SetTowards Command
  *
  * @author Frank Tang
  */
@@ -18,13 +18,11 @@ public class SetTowards extends Command {
   private double newTurtleDirection;
   private Number towardsX;
   private Number towardsY;
-  private static final int halfRevolution = 180;
-  private static final int fullRevolution = 360;
+  private static final int HALF_REVOLUTION = 180;
   private static final int argumentsNeeded = 2;
   private CommandDatabase database;
 
-
-  private static final int zero = 0;
+  private static final int ZERO = 0;
 
   public SetTowards(CommandDatabase data) {
     super(data);
@@ -34,7 +32,7 @@ public class SetTowards extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Sets the new turtle heading towards the given coordinate from the parameters
    */
   @Override
   public Double executeAndReturnValue() {
@@ -43,34 +41,28 @@ public class SetTowards extends Command {
     towardsY = database.getParameterStack().pop();
     double differenceX = towardsX.doubleValue() - turtleObject.getTurtleX();
     double differenceY = towardsY.doubleValue() - turtleObject.getTurtleY();
-    double towardsAngle = Math.toDegrees(Math.atan(differenceY/differenceX));
+    double towardsAngle = Math.toDegrees(Math.atan(differenceY / differenceX));
 
-
-    if(differenceX < zero){
-      newTurtleDirection = halfRevolution + towardsAngle;
-    }
-    else{
+    if (differenceX < ZERO) {
+      newTurtleDirection = HALF_REVOLUTION + towardsAngle;
+    } else {
       newTurtleDirection = towardsAngle;
     }
     originalTurtleDirection = turtleObject.getTurtleHeading();
     returnArgValue = newTurtleDirection - originalTurtleDirection;
-
-    System.out.println("turtle heading before " + turtleObject.getTurtleHeading());
     turtleObject.setTurtleDirection(newTurtleDirection);
-    System.out.println("turtle heading after " + turtleObject.getTurtleHeading());
-    System.out.println("3 " + newTurtleDirection);
-    System.out.println("return " + returnArgValue);
-    // TODO THIS IS TESTER CODE
     turtleObject.addCoord(turtleObject.getTurtleX(), turtleObject.getTurtleY());
     return this.returnArgValue;
 
   }
 
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
-
 
 
 }

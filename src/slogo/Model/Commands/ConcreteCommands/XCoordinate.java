@@ -5,7 +5,7 @@ import slogo.Model.Commands.Command;
 import slogo.Model.TurtleData;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a XCoordinate Command
  *
  * @author Frank Tang
  */
@@ -26,16 +26,17 @@ public class XCoordinate extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Returns the value of the turtles x-coordinate
    */
   @Override
   public Double executeAndReturnValue() {
     turtleObject = database.getTurtle();
     returnArgValue = turtleObject.getTurtleX();
-    System.out.println(returnArgValue);
     return this.returnArgValue;
   }
-
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

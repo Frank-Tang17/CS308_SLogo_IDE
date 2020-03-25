@@ -4,7 +4,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a NaturalLog Command
  *
  * @author Frank Tang
  */
@@ -23,7 +23,7 @@ public class NaturalLog extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Returns the natural log of the parameter given
    */
   @Override
   public Double executeAndReturnValue() {
@@ -31,12 +31,14 @@ public class NaturalLog extends Command {
     returnArgValue = Math.log(firstTerm.doubleValue());
     return this.returnArgValue;
   }
+
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
-
-
 
 
 }

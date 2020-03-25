@@ -4,11 +4,12 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a Turtles Command
  *
  * @author Frank Tang
  */
 public class Turtles extends Command {
+
   private static final int argumentsNeeded = 0;
   private CommandDatabase database;
 
@@ -21,7 +22,7 @@ public class Turtles extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Returns the size of the turtles list and prints out a console statement
    */
   @Override
   public Integer executeAndReturnValue() {
@@ -29,8 +30,11 @@ public class Turtles extends Command {
     return database.getTurtleList().size();
   }
 
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
 }

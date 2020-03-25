@@ -6,7 +6,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a BackCommand
+ * Subclass to create a DoTimes Command
  *
  * @author Frank Tang
  */
@@ -22,7 +22,6 @@ public class DoTimes extends Command {
   private Function<List<String>, Number> listEndFunction;
 
 
-
   public DoTimes(CommandDatabase data) {
     super(data);
     database = data;
@@ -30,7 +29,7 @@ public class DoTimes extends Command {
   }
 
   /**
-   * Moves the turtle backwards by a pixel amount.
+   * Sets the variables in the first list to the variable map and then calls the parseText() method on the input string in the second list
    */
   @Override
   public Double executeAndReturnValue() {
@@ -38,7 +37,8 @@ public class DoTimes extends Command {
     listEndFunction = database.getListFunction();
     linesSubArray = database.getCurrentLineArray();
 
-    List<String> variableList = linesSubArray.subList(linesSubArray.indexOf("["), linesSubArray.size());
+    List<String> variableList = linesSubArray
+        .subList(linesSubArray.indexOf("["), linesSubArray.size());
     int listEnd = listEndFunction.apply(variableList).intValue();
     variableList = variableList.subList(1, listEnd);
 
@@ -58,8 +58,12 @@ public class DoTimes extends Command {
 
     return this.returnArgValue;
   }
+
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
 

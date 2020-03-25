@@ -5,7 +5,7 @@ import slogo.Model.Commands.Command;
 import slogo.Model.TurtleData;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a Left Command
  *
  * @author Frank Tang
  */
@@ -37,6 +37,9 @@ public class Left extends Command {
     System.out.println(turtleObject.getTurtleHeading());
     return this.returnArgValue;
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

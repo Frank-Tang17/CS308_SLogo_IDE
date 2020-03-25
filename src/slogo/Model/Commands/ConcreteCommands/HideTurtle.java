@@ -5,7 +5,7 @@ import slogo.Model.Commands.Command;
 import slogo.Model.TurtleData;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a HideTurtle Command
  *
  * @author Frank Tang
  */
@@ -26,21 +26,24 @@ public class HideTurtle extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Turns the turtle invisible
    */
   @Override
   public Integer executeAndReturnValue() {
     turtleObject = database.getTurtle();
     returnArgValue = turtleVisibilityStatus;
-    turtleObject.setPenStatus(isTurtleVisible);
+    turtleObject.setTurtleVisibility(isTurtleVisible);
     return (int) this.returnArgValue;
 
   }
+
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
-
 
 
 }

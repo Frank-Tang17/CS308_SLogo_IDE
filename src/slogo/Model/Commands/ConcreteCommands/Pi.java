@@ -4,7 +4,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a Pi Command
  *
  * @author Frank Tang
  */
@@ -20,13 +20,15 @@ public class Pi extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Returns the value of Pi.
    */
   @Override
   public Double executeAndReturnValue() {
-    System.out.println("pi" + returnArgValue);
     return this.returnArgValue;
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

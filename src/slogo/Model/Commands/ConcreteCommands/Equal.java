@@ -4,7 +4,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a Equal Command
  *
  * @author Frank Tang
  */
@@ -27,7 +27,7 @@ public class Equal extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Returns a 1 if the two parameter values are equal; otherwise, return a 0
    */
   @Override
   public Integer executeAndReturnValue() {
@@ -38,13 +38,14 @@ public class Equal extends Command {
     } else {
       returnArgValue = 0;
     }
-
-    System.out.println(returnArgValue);
-//    System.out.println("turtle Y " + turtleObject.getTurtleY());
     return (int) this.returnArgValue;
   }
+
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
 

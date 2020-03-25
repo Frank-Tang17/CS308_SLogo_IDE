@@ -5,7 +5,7 @@ import slogo.Model.Commands.Command;
 import slogo.Model.TurtleData;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a Right Command
  *
  * @author Frank Tang
  */
@@ -25,19 +25,20 @@ public class Right extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Rotates a turtle by a clockwise rotation of a degree amount.
    */
   @Override
   public Double executeAndReturnValue() {
     turtleObject = database.getTurtle();
     degreesChanged = database.getParameterStack().pop();
     returnArgValue = degreesChanged.doubleValue();
-    System.out.println("turtle heading " + turtleObject.getTurtleHeading());
     turtleObject.rotateTurtleHeading(degreesChanged.doubleValue());
-    System.out.println("turtle heading " + turtleObject.getTurtleHeading());
     return this.returnArgValue;
 
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

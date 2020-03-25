@@ -4,7 +4,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a Sum Command
+ * Subclass to create a Difference Command
  *
  * @author Frank Tang
  */
@@ -25,7 +25,7 @@ public class Difference extends Command {
 
 
   /**
-   * Moves the turtle forward by a pixel amount.
+   * Calculates and returns the difference between the two parameter values.
    */
   @Override
   public Double executeAndReturnValue() {
@@ -35,11 +35,14 @@ public class Difference extends Command {
     return this.returnArgValue;
 
   }
+
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
-
 
 
 }

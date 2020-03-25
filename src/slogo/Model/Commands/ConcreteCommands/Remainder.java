@@ -4,7 +4,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a Sum Command
+ * Subclass to create a Remainder Command
  *
  * @author Frank Tang
  */
@@ -25,7 +25,7 @@ public class Remainder extends Command {
 
 
   /**
-   * Moves the turtle forward by a pixel amount.
+   * Returns the mod of the two parameters
    */
   @Override
   public Integer executeAndReturnValue() {
@@ -34,6 +34,9 @@ public class Remainder extends Command {
     returnArgValue = firstTerm.doubleValue() % secondTerm.doubleValue();
     return (int) this.returnArgValue;
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

@@ -4,7 +4,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a LessThan Command
  *
  * @author Frank Tang
  */
@@ -25,7 +25,7 @@ public class LessThan extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Returns a 1 if the first term is less than the second term; returns 0 otherwise
    */
   @Override
   public Integer executeAndReturnValue() {
@@ -41,6 +41,9 @@ public class LessThan extends Command {
     System.out.println(returnArgValue);
     return (int) this.returnArgValue;
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

@@ -5,13 +5,12 @@ import slogo.Model.Commands.Command;
 import slogo.Model.TurtleData;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a ClearScreenCommand
  *
  * @author Frank Tang
  */
 public class ClearScreen extends Command {
-  //moves turtle to an absolute screen position, where (0, 0) is the center of the screen
-  //returns the distance turtle moved
+
 
   private TurtleData turtleObject;
   private double returnArgValue;
@@ -28,7 +27,8 @@ public class ClearScreen extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Moves turtle to an absolute screen position, where (0, 0) is the center of the screen, and
+   * clears all turtle traces Returns the distance turtle moved
    */
   @Override
   public Double executeAndReturnValue() {
@@ -42,11 +42,14 @@ public class ClearScreen extends Command {
     turtleObject.setTurtleTrails(areTrailsVisible);
     return this.returnArgValue;
   }
+
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
-
 
 
 }

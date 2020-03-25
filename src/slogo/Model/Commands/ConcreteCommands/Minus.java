@@ -4,7 +4,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a Minus Command
  *
  * @author Frank Tang
  */
@@ -23,7 +23,7 @@ public class Minus extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Returns the negated value of the parameter
    */
   @Override
   public Double executeAndReturnValue() {
@@ -31,6 +31,9 @@ public class Minus extends Command {
     returnArgValue = -firstTerm.doubleValue();
     return this.returnArgValue;
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

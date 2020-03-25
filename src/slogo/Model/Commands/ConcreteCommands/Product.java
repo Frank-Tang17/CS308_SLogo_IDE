@@ -4,7 +4,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a Sum Command
+ * Subclass to create a Product Command
  *
  * @author Frank Tang
  */
@@ -25,7 +25,7 @@ public class Product extends Command {
 
 
   /**
-   * Moves the turtle forward by a pixel amount.
+   * Returns the product of the first and second parameters given.
    */
   @Override
   public Double executeAndReturnValue() {
@@ -34,7 +34,9 @@ public class Product extends Command {
     returnArgValue = firstTerm.doubleValue() * secondTerm.doubleValue();
     return this.returnArgValue;
   }
-
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

@@ -37,7 +37,6 @@ public class Forward extends Command {
     distanceToTravel = database.getParameterStack().pop();
     turtleHeading = turtleObject.getTurtleHeading();
 
-    System.out.println(database.getTurtle().getTurtleID());
     distanceProportionY = Math.sin(Math.toRadians(turtleHeading));
     distanceProportionX = Math.cos(Math.toRadians(turtleHeading));
     turtleObject.moveXCoord(distanceToTravel.doubleValue() * distanceProportionX);
@@ -49,6 +48,9 @@ public class Forward extends Command {
 
   }
 
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

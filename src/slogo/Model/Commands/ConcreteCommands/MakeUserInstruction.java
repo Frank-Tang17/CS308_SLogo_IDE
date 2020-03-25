@@ -6,7 +6,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a BackCommand
+ * Subclass to create a MakeUserInstruction
  *
  * @author Frank Tang
  */
@@ -18,9 +18,7 @@ public class MakeUserInstruction extends Command {
   private List<String> linesSubArray;
   private static final int argumentsNeeded = 1;
   private CommandDatabase database;
-  private Function<List<String>, Number> parseTextFunction;
   private Function<List<String>, Number> listEndFunction;
-
 
 
   public MakeUserInstruction(CommandDatabase data) {
@@ -30,23 +28,22 @@ public class MakeUserInstruction extends Command {
   }
 
   /**
-   * Moves the turtle backwards by a pixel amount.
+   * Sets a string to the Command Map that can be later used to express a string of commands
    */
   @Override
   public Double executeAndReturnValue() {
-    parseTextFunction = database.getParseFunction();
     listEndFunction = database.getListFunction();
     linesSubArray = database.getCurrentLineArray();
     variable = database.getVariableName();
     database.getParameterStack().pop();
 
-    List<String> commandList = linesSubArray.subList(linesSubArray.indexOf("["), linesSubArray.size());
+    List<String> commandList = linesSubArray
+        .subList(linesSubArray.indexOf("["), linesSubArray.size());
     int listEnd = listEndFunction.apply(commandList).intValue();
     commandList = commandList.subList(1, listEnd);
-    System.out.println(variable);
 
     String commandLine = "";
-    for(String e : commandList){
+    for (String e : commandList) {
       commandLine += e + " ";
       System.out.println(commandLine);
     }
@@ -54,8 +51,12 @@ public class MakeUserInstruction extends Command {
     returnArgValue = 1;
     return this.returnArgValue;
   }
+
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
 

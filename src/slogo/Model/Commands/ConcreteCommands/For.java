@@ -6,7 +6,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a BackCommand
+ * Subclass to create a For Command
  *
  * @author Frank Tang
  */
@@ -24,7 +24,6 @@ public class For extends Command {
   private Function<List<String>, Number> listEndFunction;
 
 
-
   public For(CommandDatabase data) {
     super(data);
     database = data;
@@ -32,7 +31,8 @@ public class For extends Command {
   }
 
   /**
-   * Moves the turtle backwards by a pixel amount.
+   * Sets a variable counter for the listed variable in the first list and then executes the
+   * commands with that variable in the second list
    */
   @Override
   public Double executeAndReturnValue() {
@@ -40,7 +40,8 @@ public class For extends Command {
     listEndFunction = database.getListFunction();
     linesSubArray = database.getCurrentLineArray();
 
-    List<String> variableList = linesSubArray.subList(linesSubArray.indexOf("["), linesSubArray.size());
+    List<String> variableList = linesSubArray
+        .subList(linesSubArray.indexOf("["), linesSubArray.size());
     int listEnd = listEndFunction.apply(variableList).intValue();
     variableList = variableList.subList(1, listEnd);
 
@@ -63,8 +64,11 @@ public class For extends Command {
     return this.returnArgValue;
   }
 
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
 

@@ -41,11 +41,14 @@ public class Backward extends Command {
     turtleObject.addCoord(turtleObject.getTurtleX(), turtleObject.getTurtleY());
     return this.returnArgValue;
   }
+
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
-
 
 
 }

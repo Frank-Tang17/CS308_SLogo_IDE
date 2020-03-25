@@ -4,13 +4,11 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a Or Command
  *
  * @author Frank Tang
  */
 public class Or extends Command {
-  //moves turtle to an absolute screen position, where (0, 0) is the center of the screen
-  //returns the distance turtle moved
 
   private double returnArgValue;
   private Number firstTerm;
@@ -25,7 +23,7 @@ public class Or extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Returns a 1 if either of the parameters given is not equal to zero; otherwise, return a 0
    */
   @Override
   public Integer executeAndReturnValue() {
@@ -39,6 +37,9 @@ public class Or extends Command {
     }
     return (int) this.returnArgValue;
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

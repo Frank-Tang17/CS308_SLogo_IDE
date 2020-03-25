@@ -70,7 +70,9 @@ public class Tell extends Command {
             turtleIdList.add(turtle.getTurtleID());
         }
     }
-
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
     @Override
     public int getArgumentsNeeded() {
         return this.argumentsNeeded;

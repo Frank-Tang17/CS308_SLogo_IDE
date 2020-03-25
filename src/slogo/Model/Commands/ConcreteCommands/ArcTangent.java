@@ -4,7 +4,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create an ArcTangent
  *
  * @author Frank Tang
  */
@@ -24,17 +24,20 @@ public class ArcTangent extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Takes the degree parameter and calculates the arc tangent of the degree
    */
   @Override
   public Double executeAndReturnValue() {
     amountOfDegrees = database.getParameterStack().pop();
     returnArgValue = Math.atan(Math.toRadians(amountOfDegrees.doubleValue()));
-    System.out.println(returnArgValue);
     return this.returnArgValue;
   }
+
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
 

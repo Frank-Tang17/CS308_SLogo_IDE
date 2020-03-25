@@ -34,6 +34,9 @@ public class MakeVariable extends Command {
     returnArgValue = expression.doubleValue();
     return this.returnArgValue;
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

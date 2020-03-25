@@ -5,7 +5,7 @@ import slogo.Model.Commands.Command;
 import slogo.Model.TurtleData;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a Heading Command
  *
  * @author Frank Tang
  */
@@ -24,7 +24,7 @@ public class Heading extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Returns the turtle's current heading
    */
   @Override
   public Double executeAndReturnValue() {
@@ -32,6 +32,9 @@ public class Heading extends Command {
     returnArgValue = turtleObject.getTurtleHeading();
     return this.returnArgValue;
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

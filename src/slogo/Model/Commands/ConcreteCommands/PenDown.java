@@ -5,7 +5,7 @@ import slogo.Model.Commands.Command;
 import slogo.Model.TurtleData;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a PenDown Command
  *
  * @author Frank Tang
  */
@@ -26,23 +26,24 @@ public class PenDown extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Makes the pen of a turtle go down
    */
   @Override
   public Integer executeAndReturnValue() {
     turtleObject = database.getTurtle();
     returnArgValue = penStatusValue;
     turtleObject.setPenStatus(isPenDown);
-    System.out.println("return " + returnArgValue);
     return (int) this.returnArgValue;
 
   }
+
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
-
-
 
 
 }

@@ -4,14 +4,11 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a GreaterThan Command
  *
  * @author Frank Tang
  */
 public class GreaterThan extends Command {
-  //moves turtle to an absolute screen position, where (0, 0) is the center of the screen
-  //returns the distance turtle moved
-
   private double returnArgValue;
   private Number firstTerm;
   private Number secondTerm;
@@ -27,7 +24,7 @@ public class GreaterThan extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Returns a 1 if the first parameter is larger than the second; otherwise, return 0
    */
   @Override
   public Integer executeAndReturnValue() {
@@ -43,6 +40,9 @@ public class GreaterThan extends Command {
 //    System.out.println("turtle Y " + turtleObject.getTurtleY());
     return (int) this.returnArgValue;
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

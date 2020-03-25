@@ -27,7 +27,7 @@ public class Sum extends Command {
 
 
   /**
-   * Moves the turtle forward by a pixel amount.
+   * Returns the sum of the two parameters given
    */
   @Override
   public Double executeAndReturnValue() {
@@ -38,6 +38,9 @@ public class Sum extends Command {
 
 
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

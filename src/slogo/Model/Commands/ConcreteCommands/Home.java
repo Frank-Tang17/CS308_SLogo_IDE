@@ -5,13 +5,11 @@ import slogo.Model.Commands.Command;
 import slogo.Model.TurtleData;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a Home Command
  *
  * @author Frank Tang
  */
 public class Home extends Command {
-  //moves turtle to an absolute screen position, where (0, 0) is the center of the screen
-  //returns the distance turtle moved
 
   private TurtleData turtleObject;
   private double returnArgValue;
@@ -27,7 +25,7 @@ public class Home extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Moves the turtle to (0,0) and returns the distance travelled
    */
   @Override
   public Double executeAndReturnValue() {
@@ -37,7 +35,6 @@ public class Home extends Command {
 
     returnArgValue = Math.sqrt(differenceX * differenceX + differenceY * differenceY);
 
-
     turtleObject.setXCoord(zeroX);
     turtleObject.setYCoord(zeroY);
     turtleObject.addCoord(zeroX, zeroY);
@@ -45,8 +42,12 @@ public class Home extends Command {
 
 
   }
+
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
 

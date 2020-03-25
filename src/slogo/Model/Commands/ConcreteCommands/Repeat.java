@@ -6,7 +6,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a BackCommand
+ * Subclass to create a Repeat Command
  *
  * @author Frank Tang
  */
@@ -26,7 +26,7 @@ public class Repeat extends Command {
   }
 
   /**
-   * Moves the turtle backwards by a pixel amount.
+   * Repeats the given input string in the list by the amount of times given by the iteration parameter
    */
   @Override
   public Double executeAndReturnValue() {
@@ -43,7 +43,9 @@ public class Repeat extends Command {
     }
     return returnArgValue;
   }
-
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

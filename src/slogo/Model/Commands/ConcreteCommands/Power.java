@@ -4,7 +4,7 @@ import slogo.Model.CommandInfrastructure.CommandDatabase;
 import slogo.Model.Commands.Command;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a Power Command
  *
  * @author Frank Tang
  */
@@ -25,16 +25,18 @@ public class Power extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Returns the calculation of putting the first term to the second term power.
    */
   @Override
   public Double executeAndReturnValue() {
     baseNumber = database.getParameterStack().pop();
     exponentNumber = database.getParameterStack().pop();
     returnArgValue = Math.pow(baseNumber.doubleValue(), exponentNumber.doubleValue());
-    System.out.println(returnArgValue);
     return this.returnArgValue;
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

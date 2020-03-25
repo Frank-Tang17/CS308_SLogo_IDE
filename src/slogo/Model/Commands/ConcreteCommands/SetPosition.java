@@ -5,15 +5,12 @@ import slogo.Model.Commands.Command;
 import slogo.Model.TurtleData;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create a SetPosition Command
  *
  * @author Frank Tang
  */
 public class SetPosition extends Command {
 
-
-  //moves turtle to an absolute screen position, where (0, 0) is the center of the screen
-  //returns the distance turtle moved
 
   private TurtleData turtleObject;
   private double returnArgValue;
@@ -31,7 +28,7 @@ public class SetPosition extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Moves the turtle to a new location and returns the distance traveled.
    */
   @Override
   public Double executeAndReturnValue() {
@@ -42,17 +39,15 @@ public class SetPosition extends Command {
     double differenceY = newY.doubleValue() - turtleObject.getTurtleY();
 
     returnArgValue = Math.sqrt(differenceX * differenceX + differenceY * differenceY);
-    System.out.println("turtleX before " + turtleObject.getTurtleX());
-    System.out.println("turtleY before " + turtleObject.getTurtleY());
     turtleObject.setXCoord(newX.doubleValue());
     turtleObject.setYCoord(newY.doubleValue());
     turtleObject.addCoord(turtleObject.getTurtleX(), turtleObject.getTurtleY());
-    System.out.println("turtleX after " + turtleObject.getTurtleX());
-    System.out.println("turtleY after " + turtleObject.getTurtleY());
-    System.out.println("return " + returnArgValue);
     return this.returnArgValue;
 
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

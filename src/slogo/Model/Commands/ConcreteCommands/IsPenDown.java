@@ -5,7 +5,7 @@ import slogo.Model.Commands.Command;
 import slogo.Model.TurtleData;
 
 /**
- * Subclass to create a LeftCommand
+ * Subclass to create an IsPenDown Command
  *
  * @author Frank Tang
  */
@@ -23,7 +23,7 @@ public class IsPenDown extends Command {
   }
 
   /**
-   * Rotates a turtle by a counterclockwise rotation of a degree amount.
+   * Returns the status of the pen; 1 if down, 0 if up
    */
   @Override
   public Integer executeAndReturnValue() {
@@ -31,6 +31,9 @@ public class IsPenDown extends Command {
     returnArgValue = turtleObject.getPenStatus();
     return (int) this.returnArgValue;
   }
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
   @Override
   public int getArgumentsNeeded(){
     return this.argumentsNeeded;

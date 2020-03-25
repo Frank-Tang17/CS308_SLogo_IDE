@@ -36,7 +36,9 @@ public class SetPalette extends Command {
 
         return index;
     }
-
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
     @Override
     public int getArgumentsNeeded() {
         return this.argumentsNeeded;

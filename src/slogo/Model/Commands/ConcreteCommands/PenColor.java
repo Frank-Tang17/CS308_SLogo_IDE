@@ -23,7 +23,9 @@ public class PenColor extends Command {
     public Number executeAndReturnValue() {
         return null;
     }
-
+  /**
+   * Returns the amount of arguments that this command needs before it can be made
+   */
     @Override
     public int getArgumentsNeeded() {
         return 0;
