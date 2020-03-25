@@ -11,12 +11,13 @@ import javafx.scene.control.Alert.AlertType;
  */
 public class DisplayError {
   private ResourceBundle languageBundle = ResourceBundle.getBundle("EnglishError");
+  private static final String ERROR_TITLE = "ErrorTitle";
   /**
    * Makes an alert pop up with a specific message in it
    */
   public DisplayError(String message) {
     Alert alert = new Alert(AlertType.ERROR);
-    alert.setTitle(languageBundle.getString("ErrorTitle"));
+    alert.setTitle(languageBundle.getString(ERROR_TITLE));
     alert.setContentText(languageBundle.getString(message));
     alert.showAndWait();
   }

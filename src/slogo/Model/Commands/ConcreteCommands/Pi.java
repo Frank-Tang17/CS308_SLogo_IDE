@@ -12,11 +12,9 @@ public class Pi extends Command {
 
   private final double returnArgValue = Math.PI;
   private static final int argumentsNeeded = 0;
-  private CommandDatabase database;
 
   public Pi(CommandDatabase data) {
     super(data);
-    database = data;
   }
 
   /**
@@ -26,17 +24,14 @@ public class Pi extends Command {
   public Double executeAndReturnValue() {
     return this.returnArgValue;
   }
+
   /**
    * Returns the amount of arguments that this command needs before it can be made
    */
   @Override
-  public int getArgumentsNeeded(){
+  public int getArgumentsNeeded() {
     return this.argumentsNeeded;
   }
-
-
-
-
 }
 
 
