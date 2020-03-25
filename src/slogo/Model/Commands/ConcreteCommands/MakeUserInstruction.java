@@ -40,14 +40,8 @@ public class MakeUserInstruction extends Command {
     variable = database.getVariableName();
     database.getParameterStack().pop();
 
-    List<String> variableList = linesSubArray.subList(linesSubArray.indexOf("["), linesSubArray.size());
-    int listEnd = listEndFunction.apply(variableList).intValue();
-    variableList = variableList.subList(1, listEnd);
-    parseTextFunction.apply(variableList);
-
-    List<String> commandList = linesSubArray.subList(listEnd + 2, linesSubArray.size());
-    commandList = commandList.subList(commandList.indexOf("["), commandList.size());
-    listEnd = listEndFunction.apply(commandList).intValue();
+    List<String> commandList = linesSubArray.subList(linesSubArray.indexOf("["), linesSubArray.size());
+    int listEnd = listEndFunction.apply(commandList).intValue();
     commandList = commandList.subList(1, listEnd);
     System.out.println(variable);
 
