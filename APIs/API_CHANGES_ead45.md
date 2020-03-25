@@ -7,7 +7,7 @@ our group decided to eliminate the Controller classes. This was because we decid
 
 Aside from the implementation of binding, our general design has stayed relatively the same. The backend APIs have certainly changed more then the frontend, specifically due to the existence of so many public
 methods in the ConcreteCommands package.
- 
+
 My work has been dedicated totally to the Frontend Internal section of our project. I'm glad that there have not been *too* many changes my API here. I document the changes that do exist below, though.
 
 Before doing so, I want to note that at first, I was hesitant to add binding to our project, since I did not want to change our APIs so drastically. However, after thinking through it more, I believe that change itself is not inherently bad—so long as it benefits our project.

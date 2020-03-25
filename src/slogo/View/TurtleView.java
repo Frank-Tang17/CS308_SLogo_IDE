@@ -3,6 +3,7 @@ package slogo.View;
 
 import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
+import javafx.animation.PauseTransition;
 import javafx.animation.RotateTransition;
 import java.io.File;
 import java.util.*;
@@ -31,6 +32,7 @@ import slogo.Model.TurtleData;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 import java.io.File;
@@ -219,8 +221,8 @@ public class TurtleView {
             rotationAnimation.setNode(turtleView);
             rotationAnimation.play();
             turtleView.getRotate();
-
         });
+
         turtleAngle.addListener( (observable, oldValue, newValue) ->{
                 if(turtleIsActive.get()) turtleView.setRotate((newValue.doubleValue()+ ANGLE_OFFSET));
                 turtleRotations.put(currentIndex, turtleView.getRotate());
@@ -269,7 +271,6 @@ public class TurtleView {
         animation.setDuration(Duration.seconds(1));
         animation.setNode(turtleView);
         animation.setInterpolator(Interpolator.LINEAR);
-        System.out.println(animation);
         animation.play();
 
         currentPosition.clear();

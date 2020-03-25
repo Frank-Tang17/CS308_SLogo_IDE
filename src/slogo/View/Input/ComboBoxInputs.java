@@ -1,7 +1,6 @@
 package slogo.View.Input;
 
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.Property;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -12,7 +11,6 @@ import javafx.scene.layout.VBox;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -21,7 +19,7 @@ import java.util.ResourceBundle;
  * The class extends Inputs, but the inheritance hierarchy is limited since the author ran out of time implementing it.
  * The Language ComboBox is held in an HBox that is added to InputView.
  */
-public class ComboBoxInputs extends Inputs {
+public class ComboBoxInputs extends InputType {
 
     private static final String COMBOBOXES = "comboBoxes";
     private ResourceBundle myComboBoxesBundle  = ResourceBundle.getBundle(COMBOBOXES);
@@ -62,7 +60,7 @@ public class ComboBoxInputs extends Inputs {
 
         String[] ComboBoxInfo  = myComboBoxesBundle.getString(comboBoxType).split(PROPERTIES_REGEX_SPLITTER);
 
-        Label addedLabel = new Label(ComboBoxInfo[VBOX_LABEL_INDEX]);
+        Label addedLabel = new Label(ComboBoxInfo[LABEL_INDEX]);
         ComboBox addedComboBox = new ComboBox(allLanguages);
 
         if (comboBoxType.equals(LANGUAGE_KEY)) myLanguageBox = addedComboBox;

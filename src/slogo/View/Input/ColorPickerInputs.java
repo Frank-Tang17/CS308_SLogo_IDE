@@ -1,7 +1,6 @@
 package slogo.View.Input;
 
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.Property;
 import javafx.geometry.Pos;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
@@ -20,7 +19,7 @@ import java.util.ResourceBundle;
  * The class extends Inputs, but the inheritance hierarchy is limited since the author ran out of time implementing it.
  * The Background ColorPicker is held in an HBox that is added to InputView.
  */
-public class ColorPickerInputs extends Inputs {
+public class ColorPickerInputs extends InputType {
 
     private HBox myColorPickers;
 
@@ -60,7 +59,7 @@ public class ColorPickerInputs extends Inputs {
 
         String[] ColorPickerInfo = myColorPickersBundle.getString(pickerType).split(PROPERTIES_REGEX_SPLITTER);
 
-        Label addedLabel = new Label(ColorPickerInfo[VBOX_LABEL_INDEX]);
+        Label addedLabel = new Label(ColorPickerInfo[LABEL_INDEX]);
         ColorPicker addedColorPicker = new ColorPicker();
 
         if (pickerType.equals(BACKGROUND_KEY)) myBackGroundPicker = addedColorPicker;

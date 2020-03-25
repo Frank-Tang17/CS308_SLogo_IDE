@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
  * This HBox is displayed in SlogoView's BorderPane. The properties from these three subclasses are also made public to binding that occurs in SlogoView.
  * The class inherits Inputs to access the formatButtons() method and to access common instance variables in the package.
  */
-public class InputView extends Inputs {
+public class InputView extends InputType {
 
     private HBox myInputBar;
 
