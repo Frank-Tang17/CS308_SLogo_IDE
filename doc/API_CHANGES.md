@@ -74,64 +74,110 @@ public class ModelParser {
   public Property getParserLanguageProperty() {}
   public int findListEnd(List<String> listToCheck){}
   public void parseText (List<String> lines) {}
-  public List<String> getLinesArray(){}
 }
  ```
  1. public Property getParserLanguageProperty() - This method gets the property for the language that is being set to the Parser so that it can parse the correct regular expressions
  2. public int findListEnd(List<String> listToCheck) - This method gets the index of the end of a bracketed list command so that the parser can skip across the commands in the list
- 3. public void parseText (List<String> lines) - This method parses through a string from the Command Box to send stacks to the CommandProducer
- 4. public List<String> getLinesArray() - returns the shortened line array to be used in commands like the repeat command
+ 3. public void parseText (List<String> lines) - This method parses through a string from the Command Box to send stacks to the CommandProducer. This method is the starting point for making any commands from an input String array, so by using this method as a Function or Consumer, the end result will be commands being made and executed from the input String array. 
 
-
+The public List<String> getLinesArray(){} method was removed by myself because I was able to find a better way to get the remaining String array to commands that need it via the CommandDatabase
  ```Java
 public class CommandProducer { 
   public CommandProducer(CommandDatabase database){}
   public void parseStacks (Stack commStack, Stack argStack, int argumentThreshold){} 
 }
 ```
-1. public void parseStacks (Stack commStack, Stack argStack, int argumentThreshold) - This method parses through the stacks given as a parameter from the ModelParser
+1. public void parseStacks (Stack commStack, Stack argStack, int argumentThreshold) - This method parses through the stacks given as a parameter from the ModelParser. Makes and executes the commands from the stacks given.
 
 ```Java
 public class CommandDatabase { 
   public CommandDatabase(TurtleData turtle){}
-  public void addParser (ModelParser parser){} 
-  public Command makeZeroParameterCommand (String targetCommand) {}
-  public void setVariableName(String targetCommand) {}
-  public Command makeOneParameterCommand (String targetCommand, Number value) {}
-  public Command makeTwoParameterCommand (String targetCommand, Number value1, Number value2) {}
-  public Integer getAmountOfParametersNeeded(String targetCommand) {}
-  public boolean isInCommandMap(String targetCommand) {}
-  public MapProperty getVariables() {}
-  public void addToHistory(String command) {}
-  public void addToVariables(String command, Number expression) {}
+    public List<TurtleData> getTurtleList() {}
+    public void setTurtleList(List<TurtleData> newTurtleList) {}
+    public void setActiveTurtle(TurtleData activeTurtle) {}
+    public TurtleData getTurtle() {}
+    public Stack<Number> getParameterStack() {}
+    public void setListArray(List<String> array) {}
+    public List<String> getCurrentLineArray() {}     
+    public Function<List<String>, Number> getListFunction() {}
+    public void addParser(ModelParser parser) {}
+    public void setVariableName(String targetCommand) {}
+    public MapProperty getVariableMap() {}
+    public String getVariableName() {}
+    public void addToVariableMap(String command, Number expression) {}
+    public void addToCommandMap(String command, String commandLine) {}
+    public MapProperty<String, String> getCOMMAND_LIST() {}
+
+
 }
 ```
-1. public void addParser (ModelParser parser) - This method will add the parser to the CommandDatabase. This method will be changed to reduce the dependencies of the project. 
-2. public Command makeZeroParameterCommand (String targetCommand) - This method will result making the CommandProducer to make a zero parameter command.
-3. public void setVariableName(String targetCommand) - This method will set the variable name in the CommandDatabase
-4. public Command makeOneParameterCommand (String targetCommand, Number value) - This method will result making the CommandProducer to make a one parameter command.
-5. public Command makeTwoParameterCommand (String targetCommand, Number value1, Number value2) - This method will result making the CommandProducer to make a two parameter command.
-6. public Integer getAmountOfParametersNeeded(String targetCommand) - returns the amount of parameters a command needs
-7. public boolean isInCommandMap(String targetCommand) - returns whether or not the regular expression is found in the command map 
-8. public MapProperty getVariables() - gets the map property to be displayed in the view
-9. public void addToVariables(String command, Number expression) - adds to the variable map
+
+1. public List<TurtleData> getTurtleList() {} - Gets the list of all turtles present in program
+2. public void setTurtleList(List<TurtleData> newTurtleList) {} - Sets the list of all possible turtles
+3. public void setActiveTurtle(TurtleData activeTurtle) {} - Sets the active turtle for implementation of multiple turtles
+4. public TurtleData getTurtle() {} - Returns the TurtleData object of a turtle
+5. public Stack<Number> getParameterStack() {} - Returns the current stack of parameters set by the CommandProducer
+6. public void setListArray(List<String> array) {} - Sets the current String array being parsed into the database
+7. public List<String> getCurrentLineArray() {} - Returns the current String array being parsed
+8. public Function<List<String>, Number> getListFunction() {} - Returns the Function for the findListEnd method
+9. public void addParser(ModelParser parser) {} - Adds the two parser function of parsing text and finding the index of the end of a list to the database
+10. public void setVariableName(String targetCommand) {} - Sets the variable name in the database to the most recently called variable name
+11. public MapProperty getVariableMap() {} - Returns the map of variables and their values
+12. public String getVariableName() {} - Returns the last variable name input into the database
+13. public void addToVariableMap(String command, Number expression) {} - Adds an entry into the variable map
+14. public void addToCommandMap(String command, String commandLine) {} - Adds an entry into the command map
+15. public MapProperty<String, String> getCOMMAND_LIST() {} - Returns the command map
+
+These API changes were made by the backend team to try to implement new turtles and other functionality. I added a Function for the findListEnd method so that I could
+use it in commands so that special commands could doctor up input strings so that the parser could have a less complex parsing algorithm. Some of these API changes
+were requested by the frontend so that they could also add functionality to their end, such as the binding the variable and command maps to the frontend for the scroll panes.
+ 
+            
+
+
 
 ```Java
-public abstract class CommandDatabase {
+public abstract class Command {
   public Number executeAndReturnValue(){}
+  public int getArgumentsNeeded(){}
 }
 ```
-1. This method is used in every command to execute a specific task and return a value for each command.
+1. public Number executeAndReturnValue(){} - This method is used in every command to execute a specific task and return a value for each command.
+2. public int getArgumentsNeeded(){} - This method returns the amount of arguments that a commands needs to be made. The command returns tell this number to the CommandProducer
+
+These changes in the Commands were made by me because we changed the structure of our command creation to use reflection instead of a factory. This consolidated information specific to each command in the subclasses themselves and
+allowed for a universal method getArgumentsNeeded(){} that is used whenever we are making a new command.
 
 #### Backend External
 
 Most of these APIs changes are making the bindings for binding the turtleView class to the data that is found in the Model. 
 
 ```Java
-  public void bindHistory(ListProperty displayedHistory){}
-  public void bindCommands(MapProperty displayedCommands){}
-  public void bindVariables(MapProperty displayedVariables){}
-  public void bindCommands(MapProperty displayedCommands){} 
-  public void bindVariables(MapProperty displayedVariables){} 
+public class CommandDatabase { 
+  public CommandDatabase(TurtleData turtle){}
+      public void setPenColor(List<Integer> rgbList) {}
+      public void bindPenColor(Property viewBackground) {}
+      public void setBackgroundColor(List<Integer> rgbList) {}
+      public void bindBackgroundColor(Property viewBackground) {}
+      public Function<List<String>, Number> getParseFunction() {}
+      public void bindVariables(MapProperty displayedVariables) {}
+      public void bindCommands(MapProperty displayedCommands) {}
+      public void addToColorMap(int index, List<Integer> color) {}
+      public void bindColors(MapProperty viewColors) {}
+      public MapProperty getColorMap() {}
+}
+     
 ```
-These methods bind data from the backend to the frontend to be displayed on things like the Scrollpanes and the popups
+1. public void setPenColor(List<Integer> rgbList) {} - Sets the pen color based on an RGB value
+2. public void bindPenColor(Property viewBackground) {} - Binds the pen color data to the front end
+3. public void setBackgroundColor(List<Integer> rgbList) {} - Sets the background color via an RGB value
+4. public void bindBackgroundColor(Property viewBackground) {} - Binds the background color data to the frontend
+5. public Function<List<String>, Number> getParseFunction() {} - Returns the Function for the parseText method
+6. public void bindVariables(MapProperty displayedVariables) {} - Binds the variable map to the MapProperty
+7. public void bindCommands(MapProperty displayedCommands) {} - Binds the Command Map to the Map Property to be displayed in the front end
+8. public void addToColorMap(int index, List<Integer> color) {} - Adds to the color map
+9. public void bindColors(MapProperty viewColors) {} - Binds the Color Map to the MapProperty
+10. public MapProperty getColorMap() {} - Returns the color map
+
+These methods bind data from the backend to the frontend to be displayed on things like the Scrollpanes and the popups. I chose to make a Function for the parseText() method so that the frontend
+and the backend can utilize the ability to create commands from a input string.
